@@ -1,4 +1,4 @@
-# Codeigniter-Migrations
+# Codeigniter-Migrations Package
 
 ## Contributors
 
@@ -21,17 +21,17 @@ With this library you can now do this.
 
 ## Install
 
-Copy the files to these locations.
+Add the migrations folder to your packages directory, the first usage will create
+the table specified in this package's configuration file.  You will need to create
+your migrations folder and classes and point to directory in the config file.
 	
-    config/migrations.php -> application/config/
-    libraries/Migrations.php -> application/libraries/
-    controllers/migrate.php -> application/controllers/
 
 The migration files included in this are just examples. You should install them where ever you 
 point your `$config["migrations_path"]` to.
  
 ## Usage
 	
+    $this->load->add_package_path(APPPATH.'third_party/migrations/');
     $this->load->library('migrations');
     $this->migrations->set_verbose(TRUE); // echo statements or not
     $this->migrations->version(id); // migrate the database to a particular version
@@ -39,26 +39,28 @@ point your `$config["migrations_path"]` to.
     $this->migrations->install(); // install to the latest version.
 
 The migrate.php controller just shows the use of these functions. If you are going to use it.
-comment out the `show_error()` in the construct, and put it back in place when you are done.
+comment out the `show_error()` in the construct, and put it back in place when you are done or 
+disable it in the configuration file.
 	
 ## Examples
 	
 ### Make sure our database is up-to-date
 
-    if ( ! $this->migration->latest())
+    if ( ! $this->migrations->latest())
     {
-    	show_error($this->migration->error);
+    	$error = $this->migrations->get_error();
+    	show_error($error);
     }
 	
 ### Update (or come back to) migration 5
 
-    if ( ! $this->migration->version(5))
+    if ( ! $this->migrations->version(5))
     {
-    	show_error($this->migration->error);
+    	$error = $this->migrations->get_error();
+    	show_error($error);
     }
 
-## Other Helpful Stuff
+## Removal
 
-Included in this git repo is an example CodeIgniter Hook and a basic application/config/hooks.php to show
-how to enable it. This hook is one of several ways to have migrations run on every page load. You
-could also place the code into a MY_Controller.
+Run $this->migrations_model->uninstall() or simply drop the table it added and remove the 
+migrations package and the migrations directory/files you added.
