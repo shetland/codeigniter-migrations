@@ -3,6 +3,7 @@
 ## Contributors
 
 * [John Snyder](http://www.snyderplace.com/)
+* [Eric Barnes](http://ericlbarnes.com/)
 * [Phil Sturgeon](http://philsturgeon.co.uk)
 * [webPragmatist](http://www.webPragmatist.com)
 * [Spicer Matthews, Cloudmanic Labs, LLC](http://www.cloudmanic.com)
