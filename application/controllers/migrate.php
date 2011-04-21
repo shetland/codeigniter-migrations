@@ -108,7 +108,7 @@ class Migrate extends CI_Controller
 		// No $id supplied? Use the config version
 		$id OR $id = $this->config->item('migrations_version');
 
-		if ( ! $this->migrations->version($id))
+		if ($this->migrations->version($id) === FALSE)
 		{
 			$error = $this->migrations->get_error();
 			show_error($error);
